@@ -22,5 +22,9 @@
     <string name="txtsignup">SignUp</string>
     <string name="menu_help">Help</string>
     <string name="menu_search">Search</string>
+    <string name="txtcall">Contact Us:</string>
+    <string name="txtEmail">Email Us:</string>
+    <string name="btnCall">Call Support</string>
+    <string name="btnEmail">Send Us an Email</string>
 
 </resources>
