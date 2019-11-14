@@ -5,10 +5,12 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
@@ -16,10 +18,11 @@ import androidx.lifecycle.ViewModelProviders;
 import com.example.parkandgoapp.R;
 import com.example.parkandgoapp.SignUpAct;
 
-public class HomeFragment extends Fragment implements View.OnClickListener {
+public class HomeFragment extends Fragment implements View.OnClickListener   {
 
     TextView signin;
     TextView signup;
+    Button txtbtn;
 
 
 
@@ -29,6 +32,10 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                              ViewGroup container, Bundle savedInstanceState) {
 
         View root = inflater.inflate(R.layout.fragment_home, container, false);
+
+
+        txtbtn = root.findViewById(R.id.txtbtn);
+        txtbtn.setOnClickListener(this);
 
         signin = root.findViewById(R.id.txtsignin);
         signin.setOnClickListener(this);
@@ -45,16 +52,17 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
             case R.id.txtsignin:
                 this.SignIn();
                 break;
-            case R.id.txtsignup:
+            case R.id.txtbtn:
                 this.SignUp();
                 break;
         }
     }
 
      void SignIn(){
-       //Intent newpage1 = new Intent(this,SignUpAct.class);
+
     }
      void SignUp(){
-
+         Intent newpage1 = new Intent(getActivity(),SignUpAct.class);
+         startActivity(newpage1);
      }
 }
