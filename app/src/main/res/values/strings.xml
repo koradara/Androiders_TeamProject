@@ -17,7 +17,7 @@
     <string name="email">Send an Email</string>
     <string name="btnAddParking">AddParking</string>
     <string name="btnParkingR">ViewParking</string>
-    <string name="btnlogin">Login</string>
+    <string name="btnlogin">Go Ahead! Register</string>
     <string name="txtsignin">Already a Member? Login below</string>
     <string name="txtsignup">New Here? Sign Up</string>
     <string name="menu_help">Help</string>
