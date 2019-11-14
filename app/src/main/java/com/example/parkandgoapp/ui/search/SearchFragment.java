@@ -1,10 +1,12 @@
 package com.example.parkandgoapp.ui.search;
 
 import android.Manifest;
+import android.content.Context;
 import android.content.pm.PackageManager;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -30,15 +32,35 @@ import java.util.List;
 import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
+import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 
-public class SearchFragment extends FragmentActivity implements OnMapReadyCallback{
+public class SearchFragment extends Fragment implements OnMapReadyCallback{
 
 
         public View onCreateView(@NonNull LayoutInflater inflater,
                                  ViewGroup container, Bundle savedInstanceState) {
 
             View root = inflater.inflate(R.layout.fragment_search, container, false);
+            // Obtain the SupportMapFragment and get notified when the map is ready to be used.
+            SupportMapFragment mapFragment = (SupportMapFragment) getActivity().getSupportFragmentManager()
+                    .findFragmentById(R.id.map);
+            mapFragment.getMapAsync(this);
+
+            mFusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(getActivity());
+            searchView= root.findViewById(R.id.searchView);
+            searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+                @Override
+                public boolean onQueryTextSubmit(String s) {
+                    geoLocate();
+                    return false;
+                }
+
+                @Override
+                public boolean onQueryTextChange(String s) {
+                    return false;
+                }
+            });
             return root;
         }
 
@@ -52,31 +74,14 @@ public class SearchFragment extends FragmentActivity implements OnMapReadyCallba
     private FusedLocationProviderClient mFusedLocationProviderClient;
     private static final String TAG="MapsActivity";
     private SearchView searchView;
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.fragment_search);
-        // Obtain the SupportMapFragment and get notified when the map is ready to be used.
-        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
-                .findFragmentById(R.id.map);
-        mapFragment.getMapAsync(this);
-
-        mFusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
-        searchView=findViewById(R.id.searchView);
-        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-            @Override
-            public boolean onQueryTextSubmit(String s) {
-                geoLocate();
-                return false;
-            }
-
-            @Override
-            public boolean onQueryTextChange(String s) {
-                return false;
-            }
-        });
-
-    }
+//
+//    @Override
+//    protected void onCreate(Bundle savedInstanceState) {
+//        super.onCreate(savedInstanceState);
+//        setContentView(R.layout.fragment_search);
+//
+//
+//    }
 
 
     @Override
@@ -93,10 +98,10 @@ public class SearchFragment extends FragmentActivity implements OnMapReadyCallba
 
 
     private void getLocationPermission(){
-        if(ContextCompat.checkSelfPermission(this.getApplicationContext(), Manifest.permission.ACCESS_FINE_LOCATION)== PackageManager.PERMISSION_GRANTED){
+        if(ContextCompat.checkSelfPermission(getActivity().getApplicationContext(), Manifest.permission.ACCESS_FINE_LOCATION)== PackageManager.PERMISSION_GRANTED){
             mLocationPermissionGranted=true;
         }else{
-            ActivityCompat.requestPermissions(this,new String[]{Manifest.permission.ACCESS_FINE_LOCATION},PERMISSION_REQUEST_ACCESS_FINE_LOCATION);
+            ActivityCompat.requestPermissions(getActivity(),new String[]{Manifest.permission.ACCESS_FINE_LOCATION},PERMISSION_REQUEST_ACCESS_FINE_LOCATION);
         }
     }
 
@@ -123,7 +128,7 @@ public class SearchFragment extends FragmentActivity implements OnMapReadyCallba
 
     private void geoLocate(){
         String searchString=searchView.getQuery().toString();
-        Geocoder geocoder=new Geocoder(SearchFragment.this);
+        Geocoder geocoder=new Geocoder(getActivity());
         List<Address> addressList=new ArrayList<>();
         try{
             addressList=geocoder.getFromLocationName(searchString,1);
@@ -151,7 +156,7 @@ public class SearchFragment extends FragmentActivity implements OnMapReadyCallba
         try{
             if(mLocationPermissionGranted){
                 Task<Location> locationResult = mFusedLocationProviderClient.getLastLocation();
-                locationResult.addOnCompleteListener(this, new OnCompleteListener<Location>() {
+                locationResult.addOnCompleteListener(getActivity(), new OnCompleteListener<Location>() {
                     @Override
                     public void onComplete(@NonNull Task<Location> task) {
                         if(task.isSuccessful()){

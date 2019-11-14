@@ -10,19 +10,17 @@ import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProviders;
 
 import com.example.parkandgoapp.R;
 import com.example.parkandgoapp.SignUpAct;
 
 public class HomeFragment extends Fragment implements View.OnClickListener   {
 
-    TextView signin;
-    TextView signup;
-    Button txtbtn;
+    Button signin;
+    Button signup;
+
+
 
 
 
@@ -34,13 +32,10 @@ public class HomeFragment extends Fragment implements View.OnClickListener   {
         View root = inflater.inflate(R.layout.fragment_home, container, false);
 
 
-        txtbtn = root.findViewById(R.id.txtbtn);
-        txtbtn.setOnClickListener(this);
-
-        signin = root.findViewById(R.id.txtsignin);
+        signin = root.findViewById(R.id.btnSignIn);
         signin.setOnClickListener(this);
 
-        signup = root.findViewById(R.id.txtsignup);
+        signup = root.findViewById(R.id.btnSignUp);
         signup.setOnClickListener(this);
 
         return root;
@@ -49,10 +44,10 @@ public class HomeFragment extends Fragment implements View.OnClickListener   {
     @Override
     public void onClick(View view) {
         switch (view.getId()){
-            case R.id.txtsignin:
+            case R.id.btnSignIn:
                 this.SignIn();
                 break;
-            case R.id.txtbtn:
+            case R.id.btnSignUp:
                 this.SignUp();
                 break;
         }
