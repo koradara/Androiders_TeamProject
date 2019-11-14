@@ -18,13 +18,16 @@
     <string name="btnAddParking">AddParking</string>
     <string name="btnParkingR">ViewParking</string>
     <string name="btnlogin">Login</string>
-    <string name="txtsignin">SignIn</string>
-    <string name="txtsignup">SignUp</string>
+    <string name="txtsignin">Already a Member? Login below</string>
+    <string name="txtsignup">New Here? Sign Up</string>
     <string name="menu_help">Help</string>
     <string name="menu_search">Search</string>
     <string name="txtcall">Contact Us:</string>
     <string name="txtEmail">Email Us:</string>
     <string name="btnCall">Call Support</string>
     <string name="btnEmail">Send Us an Email</string>
+    <string name="btnSignUp">SignUp</string>
+    <string name="btnSignIn">Sign In</string>
+    <string name="txtTitle">Welcome to Park And Go !</string>
 
 </resources>
