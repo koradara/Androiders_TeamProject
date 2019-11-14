@@ -15,7 +15,8 @@
     <string name="menu_send">Send</string>
     <string name="txtsignin">SignIn</string>
     <string name="txtsignup">SignUp</string>
-    <string name="edtusername">Username</string>
     <string name="btnlogin">LogIn</string>
     <string name="edtnumberplate">Number Plate</string>
+    <string name="btnAddParking">Add Parking</string>
+    <string name="btnParkingR">Parking Receipt</string>
 </resources>
