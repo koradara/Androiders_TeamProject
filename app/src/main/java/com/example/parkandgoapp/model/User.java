@@ -1,14 +1,18 @@
 package com.example.parkandgoapp.model;
 
-import androidx.room.ColumnInfo;
-import androidx.room.Entity;
-import androidx.room.PrimaryKey;
 
 import java.io.Serializable;
 import java.util.Date;
 
+
+import androidx.room.ColumnInfo;
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
+
+
 /**
  * ParkAndGoApp created by nisarg
+
  * Student ID: 991541369
  * on 2019-11-14
  */
@@ -35,17 +39,26 @@ public class User implements Serializable {
     private String email;
 
 
+    @ColumnInfo(name="date")
+    private Date date;
+
+    public User(String username,String password, String phoneNumber,String numberPlate, String email, Date date){
+
+
     @ColumnInfo(name = "cardnumber")
     private String cardnumber;
 
     public User(String username,String password, String phoneNumber,String numberPlate, String email,String cardnumber){
+
         this.username = username;
         this.password = password;
         this.phoneNumber = phoneNumber;
         this.numberPlate = numberPlate;
         this.email = email;
-        this.cardnumber = cardnumber;
 
+        this.date = date;
+
+        this.cardnumber = cardnumber;
     }
 
     public String getUsername() {
@@ -68,10 +81,17 @@ public class User implements Serializable {
     }
     public void setEmail(String email){this.email = email;}
 
+
+    public Date getDate() {
+        return date;
+    }
+    public void setDate(Date date){this.date = date;}
+
     public String getCardnumber(){
         return cardnumber;
     }
     public void setCardnumber(String cardnumber){this.cardnumber = cardnumber;}
+
 
     public String getNumberPlate() {return numberPlate;}
     public void setNumberPlate(String numberPlate){this.numberPlate = numberPlate;}
@@ -90,9 +110,14 @@ public class User implements Serializable {
                 ",username='" + '\'' +
                 ",password='" + '\'' +
                 ",phoneNumber='" + '\'' +
+                ",numberPlate='" + '\'' +
+                ",email='" + '\'' +
+                "date='" + '\'' +
+
                 ",cardnumber='" + '\''+
                 ",numberPlate='" + '\'' +
                 ",email='" + '\'' +
+
                 '}';
     }
 
