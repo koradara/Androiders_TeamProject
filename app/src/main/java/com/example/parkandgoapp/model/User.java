@@ -35,12 +35,16 @@ public class User implements Serializable {
     private String email;
 
 
-    public User(String username,String password, String phoneNumber,String numberPlate, String email){
+    @ColumnInfo(name = "cardnumber")
+    private String cardnumber;
+
+    public User(String username,String password, String phoneNumber,String numberPlate, String email,String cardnumber){
         this.username = username;
         this.password = password;
         this.phoneNumber = phoneNumber;
         this.numberPlate = numberPlate;
         this.email = email;
+        this.cardnumber = cardnumber;
 
     }
 
@@ -64,6 +68,11 @@ public class User implements Serializable {
     }
     public void setEmail(String email){this.email = email;}
 
+    public String getCardnumber(){
+        return cardnumber;
+    }
+    public void setCardnumber(String cardnumber){this.cardnumber = cardnumber;}
+
     public String getNumberPlate() {return numberPlate;}
     public void setNumberPlate(String numberPlate){this.numberPlate = numberPlate;}
 
@@ -81,6 +90,7 @@ public class User implements Serializable {
                 ",username='" + '\'' +
                 ",password='" + '\'' +
                 ",phoneNumber='" + '\'' +
+                ",cardnumber='" + '\''+
                 ",numberPlate='" + '\'' +
                 ",email='" + '\'' +
                 '}';

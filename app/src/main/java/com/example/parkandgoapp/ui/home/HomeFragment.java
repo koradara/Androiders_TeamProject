@@ -2,6 +2,7 @@ package com.example.parkandgoapp.ui.home;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,16 +12,26 @@ import android.widget.TextView;
 import androidx.annotation.Nullable;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
 
 import com.example.parkandgoapp.R;
 import com.example.parkandgoapp.SignInAct;
 import com.example.parkandgoapp.SignUpAct;
+import com.example.parkandgoapp.model.User;
+import com.example.parkandgoapp.viewmodel.UserViewModel;
+
+import java.util.List;
+
+import static android.app.Activity.RESULT_OK;
 
 public class HomeFragment extends Fragment implements View.OnClickListener   {
 
     Button signin;
     Button signup;
 
+    public static final int SIGN_UP_REQUEST_CODE = 1;
+
+    UserViewModel userViewModel;
 
 
 
@@ -38,6 +49,18 @@ public class HomeFragment extends Fragment implements View.OnClickListener   {
 
         signup = root.findViewById(R.id.btnSignUp);
         signup.setOnClickListener(this);
+
+        userViewModel = new UserViewModel(getActivity().getApplication());
+
+        userViewModel.getAllUsers().observe(HomeFragment.this, new Observer<List<User>>() {
+            @Override
+            public void onChanged(List<User> users) {
+                //task when the data changes
+                for (User user : users){
+                    Log.e("HomeFragment", user.toString());
+                }
+            }
+        });
 
         return root;
     }
@@ -61,6 +84,22 @@ public class HomeFragment extends Fragment implements View.OnClickListener   {
     }
      void SignUp(){
          Intent newpage1 = new Intent(getActivity(),SignUpAct.class);
-         startActivity(newpage1);
+         startActivityForResult(newpage1,SIGN_UP_REQUEST_CODE);
      }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == SIGN_UP_REQUEST_CODE){
+            if(resultCode == RESULT_OK){
+
+                User newUser = (User) data.getSerializableExtra("com.example.parkandgoapp.ui.home.REPLY");
+                Log.e("HOME_FRAGMENT_ACTIVITY", newUser.toString());
+
+                //insert new user account detail into database
+                userViewModel.insert(newUser);
+            }
+        }
+    }
 }
