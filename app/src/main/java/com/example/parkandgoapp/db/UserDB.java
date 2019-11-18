@@ -10,12 +10,12 @@ import androidx.room.TypeConverters;
 import com.example.parkandgoapp.model.User;
 
 /**
- * ParkAndGoApp created by test
+ * ParkAndGoApp created by nisarg
  * Student ID: 991541369
  * on 2019-11-14
  */
 @Database(entities = {User.class}, version = 1)
-@TypeConverters(DateConvertor.class)
+
 public abstract class UserDB extends RoomDatabase {
 
     public abstract UserDao userDao();

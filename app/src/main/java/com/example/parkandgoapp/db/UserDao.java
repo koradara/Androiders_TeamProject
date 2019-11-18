@@ -12,7 +12,7 @@ import com.example.parkandgoapp.model.User;
 import java.util.List;
 
 /**
- * ParkAndGoApp created by test
+ * ParkAndGoApp created by nisarg
  * Student ID: 991541369
  * on 2019-11-14
  */
