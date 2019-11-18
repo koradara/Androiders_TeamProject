@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.example.parkandgoapp.model.User;
 import com.example.parkandgoapp.viewmodel.UserViewModel;
@@ -21,6 +22,9 @@ public class SignInAct extends AppCompatActivity implements View.OnClickListener
     EditText username;
     EditText password;
     Button signin;
+
+    String usrname = "";
+    String paswd = "";
 
     public static final int SIGN_UP_REQUEST_CODE = 1;
 
@@ -50,14 +54,32 @@ public class SignInAct extends AppCompatActivity implements View.OnClickListener
 
     @Override
     public void onClick(View view) {
+        switch (view.getId()){
+            case R.id.btnsignin:
+                this.SignIn();
+                openMenuActivity();
+        }
+
 
 
 
     }
 
     void SignIn(){
+        usrname = username.getText().toString();
+        paswd = password.getText().toString();
 
+        if (username.equals("test") && password.equals("test")){
+            //login successful
+            Toast.makeText(this, "Login successful",Toast.LENGTH_LONG).show();
+            this.openMenuActivity();
+        }else{
+            //login unsuccessful
+            Toast.makeText(this, "Incorrect Username/Password ! Try again.",Toast.LENGTH_LONG).show();
+        }
     }
+
+
     void signup(){
         Intent menuIntent = new Intent(SignInAct.this,MenuActivity.class);
         startActivityForResult(menuIntent,SIGN_UP_REQUEST_CODE);
@@ -80,4 +102,6 @@ public class SignInAct extends AppCompatActivity implements View.OnClickListener
             }
         }
     }
+
+    //compare user to all users
 }
