@@ -62,7 +62,6 @@ public class SearchFragment extends Fragment implements OnMapReadyCallback{
             return root;
         }
 
-
     private GoogleMap mMap;
     private final LatLng mDefaultLocation=new LatLng(0,0);
     private final static int DEFAULT_ZOOM=15;
