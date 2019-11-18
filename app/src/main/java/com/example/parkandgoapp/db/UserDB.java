@@ -26,7 +26,7 @@ public abstract class UserDB extends RoomDatabase {
         if (INSTANCE == null){
             synchronized (UserDB.class){
                 INSTANCE = Room.databaseBuilder(context.getApplicationContext(),
-                        UserDB.class, "parkandgo_database").build();
+                        UserDB.class, "park_and_go_app_database").build();
             }
         }
         return INSTANCE;

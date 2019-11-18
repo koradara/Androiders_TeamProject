@@ -1,8 +1,10 @@
 package com.example.parkandgoapp;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -49,11 +51,33 @@ public class SignInAct extends AppCompatActivity implements View.OnClickListener
     @Override
     public void onClick(View view) {
 
+
+
     }
 
     void SignIn(){
 
     }
+    void signup(){
+        Intent menuIntent = new Intent(SignInAct.this,MenuActivity.class);
+        startActivityForResult(menuIntent,SIGN_UP_REQUEST_CODE);
+    }
 
+    void openMenuActivity(){
+        Intent menuIntent = new Intent(SignInAct.this,MenuActivity.class);
+        startActivity(menuIntent);
+    }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if(requestCode == SIGN_UP_REQUEST_CODE){
+            if(requestCode == RESULT_OK){
+                User newUser = (User) data.getSerializableExtra("com.example.parkandgoapp.REPLY");
+                Log.e("SIGN_IN_ACT",newUser.toString());
+                userViewModel.insert(newUser);
+            }
+        }
+    }
 }

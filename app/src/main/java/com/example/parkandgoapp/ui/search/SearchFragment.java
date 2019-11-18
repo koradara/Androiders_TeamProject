@@ -1,12 +1,10 @@
 package com.example.parkandgoapp.ui.search;
 
 import android.Manifest;
-import android.content.Context;
 import android.content.pm.PackageManager;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
-import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -19,8 +17,8 @@ import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.OnMapReadyCallback;
-import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -33,19 +31,19 @@ import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentActivity;
 
 public class SearchFragment extends Fragment implements OnMapReadyCallback{
-
+    private MapView mapView;
 
         public View onCreateView(@NonNull LayoutInflater inflater,
                                  ViewGroup container, Bundle savedInstanceState) {
-
             View root = inflater.inflate(R.layout.fragment_search, container, false);
-            // Obtain the SupportMapFragment and get notified when the map is ready to be used.
-            SupportMapFragment mapFragment = (SupportMapFragment) getActivity().getSupportFragmentManager()
-                    .findFragmentById(R.id.map);
-            mapFragment.getMapAsync(this);
+            //SupportMapFragment mapFragment = (SupportMapFragment) getActivity().getSupportFragmentManager().findFragmentById(R.id.map);
+
+            mapView = root.findViewById(R.id.map);
+            mapView.onCreate(savedInstanceState);
+            mapView.onResume();
+            mapView.getMapAsync(this);
 
             mFusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(getActivity());
             searchView= root.findViewById(R.id.searchView);
@@ -66,30 +64,20 @@ public class SearchFragment extends Fragment implements OnMapReadyCallback{
 
 
     private GoogleMap mMap;
-    private final LatLng mDefaultLocation=new LatLng(29.587, 106.5376);
-    private final static int DEFAULT_ZOOM=5;
+    private final LatLng mDefaultLocation=new LatLng(0,0);
+    private final static int DEFAULT_ZOOM=15;
     private static final int PERMISSION_REQUEST_ACCESS_FINE_LOCATION=1;
     private boolean mLocationPermissionGranted;
     private Location mLastKnownLocation;
     private FusedLocationProviderClient mFusedLocationProviderClient;
     private static final String TAG="MapsActivity";
     private SearchView searchView;
-//
-//    @Override
-//    protected void onCreate(Bundle savedInstanceState) {
-//        super.onCreate(savedInstanceState);
-//        setContentView(R.layout.fragment_search);
-//
-//
-//    }
-
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
         mMap.setMapType(GoogleMap.MAP_TYPE_SATELLITE);
         mMap.getUiSettings().setZoomGesturesEnabled(true);
-        mMap.addMarker(new MarkerOptions().position(mDefaultLocation).title("You are here"));
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(mDefaultLocation,DEFAULT_ZOOM));
         this.getLocationPermission();
         this.updateLocationUI();
@@ -139,14 +127,14 @@ public class SearchFragment extends Fragment implements OnMapReadyCallback{
         Log.e(TAG, addressList.toString());
         if(addressList.size()>0){
             Address foundAdderess=addressList.get(0);
-
             foundAdderess.getCountryName();
             foundAdderess.getSubAdminArea(); //city
             foundAdderess.getThoroughfare(); //street
             foundAdderess.getPostalCode();
             LatLng foundAddress=new LatLng(foundAdderess.getLatitude(),foundAdderess.getLongitude());
-            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(foundAddress,DEFAULT_ZOOM));
-            // mMap.animateCamera(CameraUpdateFactory.zoomTo(10));
+            //mMap.clear();
+            //mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(foundAddress,DEFAULT_ZOOM));
+            mMap.animateCamera(CameraUpdateFactory.zoomTo(10));
             mMap.addMarker(new MarkerOptions().position(foundAddress).title(searchString));
         }
     }
