@@ -28,12 +28,21 @@ public class SignUpAct extends AppCompatActivity implements View.OnClickListener
     String email;
     String numberplate;
 
+
+    String cardnumber;
+
+
     EditText edtusername1;
     EditText edtpassword1;
     EditText edtemail1;
     EditText edtphone1;
     EditText edtnumberplate1;
+
     Button btnlogin;
+
+    EditText edtcardnumber1;
+    Button btnlogin1;
+
 
     public static final String EXTRA_REPLY = "com.example.parkandgoapp";
 
@@ -50,9 +59,16 @@ public class SignUpAct extends AppCompatActivity implements View.OnClickListener
         edtpassword1 = findViewById(R.id.edtpassword);
         edtemail1 = findViewById(R.id.edtemail);
         edtphone1 = findViewById(R.id.edtphone);
+
         edtnumberplate1 = findViewById(R.id.edtnumberplate);
         btnlogin = findViewById(R.id.btnSignIn);
         btnlogin.setOnClickListener(this);
+
+        edtcardnumber1 = findViewById(R.id.edtCardNumber);
+        edtnumberplate1 = findViewById(R.id.edtnumberplate);
+        btnlogin1 = findViewById(R.id.btnlogin);
+        btnlogin1.setOnClickListener(this);
+
     }
 
     @Override
@@ -61,6 +77,8 @@ public class SignUpAct extends AppCompatActivity implements View.OnClickListener
             case R.id.btnlogin:
                if(this.validateData()){
                    this.createUserAndReply();
+                   openMenuActivity();
+
                }
                break;
 
@@ -77,16 +95,33 @@ public class SignUpAct extends AppCompatActivity implements View.OnClickListener
         numberplate = edtnumberplate1.getText().toString();
         email = edtemail1.getText().toString();
 
+
         User newUser = new User(username,password,phonenumber,numberplate,email);
+
+        cardnumber = edtcardnumber1.getText().toString();
+
+
+        User newUser = new User(username,password,phonenumber,numberplate,email,cardnumber);
+
         Log.d("SignUpAct",newUser.toString());
 
         Intent replyIntent = new Intent();
         replyIntent.putExtra(EXTRA_REPLY,newUser);
         setResult(RESULT_OK,replyIntent);
+
+        //save to DB
+
         finish();
 
 
     }
+
+
+    void openMenuActivity(){
+        Intent menuIntent = new Intent(SignUpAct.this,MenuActivity.class);
+        startActivity(menuIntent);
+    }
+
 
     private boolean validateData(){
         boolean allvalidations = true;
