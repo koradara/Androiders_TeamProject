@@ -13,6 +13,7 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import com.example.parkandgoapp.R;
+import com.example.parkandgoapp.SignInAct;
 import com.example.parkandgoapp.SignUpAct;
 
 public class HomeFragment extends Fragment implements View.OnClickListener   {
@@ -54,6 +55,8 @@ public class HomeFragment extends Fragment implements View.OnClickListener   {
     }
 
      void SignIn(){
+        Intent newpage2 = new Intent(getActivity(), SignInAct.class);
+        startActivity(newpage2);
 
     }
      void SignUp(){
