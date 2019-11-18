@@ -1,8 +1,8 @@
 package com.example.parkandgoapp.db;
 
-import androidx.room.TypeConverter;
-
 import java.util.Date;
+
+import androidx.room.TypeConverter;
 
 /**
  * ParkAndGoApp created by test

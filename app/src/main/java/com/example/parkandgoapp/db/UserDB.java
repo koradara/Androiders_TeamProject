@@ -2,12 +2,12 @@ package com.example.parkandgoapp.db;
 
 import android.content.Context;
 
+import com.example.parkandgoapp.model.User;
+
 import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
 import androidx.room.TypeConverters;
-
-import com.example.parkandgoapp.model.User;
 
 /**
  * ParkAndGoApp created by test

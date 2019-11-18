@@ -1,11 +1,11 @@
 package com.example.parkandgoapp.model;
 
+import java.io.Serializable;
+import java.util.Date;
+
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
-
-import java.io.Serializable;
-import java.util.Date;
 
 /**
  * ParkAndGoApp created by test
