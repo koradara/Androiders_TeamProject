@@ -40,5 +40,6 @@
     <string name="edtDate" />
     <string name="edtCVV" />
     <string name="edtCardNumber" />
+    <string name="imgTitle">Title Image</string>
 
 </resources>
