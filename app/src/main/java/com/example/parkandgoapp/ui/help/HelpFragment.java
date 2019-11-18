@@ -30,8 +30,7 @@ public class HelpFragment extends Fragment {
             }
         });
         mWebView.getSettings().setJavaScriptEnabled(true);
-       mWebView.loadUrl("http://www.4399.com/");
-        //mWebView.loadUrl("file:///android_asset/helpPage.html");
+       mWebView.loadUrl("file:///android_asset/helpPage.html");
         return root;
     }
 }
