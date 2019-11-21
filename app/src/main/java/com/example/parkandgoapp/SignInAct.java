@@ -10,7 +10,10 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+
+
 import android.widget.Toast;
+
 
 import com.example.parkandgoapp.model.User;
 import com.example.parkandgoapp.viewmodel.UserViewModel;
@@ -23,8 +26,11 @@ public class SignInAct extends AppCompatActivity implements View.OnClickListener
     EditText password;
     Button signin;
 
+
+
     String usrname = "";
     String paswd = "";
+
 
     public static final int SIGN_UP_REQUEST_CODE = 1;
 
@@ -54,6 +60,7 @@ public class SignInAct extends AppCompatActivity implements View.OnClickListener
 
     @Override
     public void onClick(View view) {
+
         switch (view.getId()){
             case R.id.btnsignin:
                 this.SignIn();
@@ -63,9 +70,14 @@ public class SignInAct extends AppCompatActivity implements View.OnClickListener
 
 
 
+
     }
 
     void SignIn(){
+
+
+    }
+
         usrname = username.getText().toString();
         paswd = password.getText().toString();
 
@@ -104,4 +116,5 @@ public class SignInAct extends AppCompatActivity implements View.OnClickListener
     }
 
     //compare user to all users
+
 }
