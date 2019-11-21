@@ -40,8 +40,8 @@ import java.util.List;
         @Delete
         void delete(User user);
 
-    @Query("SELECT * FROM parkandgo_table ORDER BY email ASC")
-    LiveData<List<User>> getAllUsers();
+        @Query("SELECT * FROM parkandgo_table ORDER BY email ASC")
+        LiveData<List<User>> getAllUsers();
 
 
     }

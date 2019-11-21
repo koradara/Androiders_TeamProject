@@ -34,7 +34,7 @@
         app:layout_constraintTop_toBottomOf="@+id/txtSignUp" />
 
     <Button
-        android:id="@+id/btnSignIn"
+        android:id="@+id/btnSignin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="162dp"
@@ -76,5 +76,5 @@
         android:text="@string/txtsignup"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnSignIn" />
+        app:layout_constraintTop_toBottomOf="@+id/btnSignin" />
 </androidx.constraintlayout.widget.ConstraintLayout>
