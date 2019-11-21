@@ -7,7 +7,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.annotation.NonNull;
@@ -46,7 +45,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener   {
         View root = inflater.inflate(R.layout.fragment_home, container, false);
 
 
-        signin = root.findViewById(R.id.btnSignIn);
+        signin = root.findViewById(R.id.btnSignin);
         signin.setOnClickListener(this);
 
         signup = root.findViewById(R.id.btnSignUp);
@@ -70,7 +69,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener   {
     @Override
     public void onClick(View view) {
         switch (view.getId()){
-            case R.id.btnSignIn:
+            case R.id.btnSignin:
                 this.SignIn();
                 break;
             case R.id.btnSignUp:

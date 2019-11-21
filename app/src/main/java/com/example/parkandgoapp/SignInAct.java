@@ -21,7 +21,7 @@ public class SignInAct extends AppCompatActivity implements View.OnClickListener
 
     EditText username;
     EditText password;
-    Button signin;
+    Button Signin;
 
     String usrname = "";
     String paswd = "";
@@ -35,8 +35,8 @@ public class SignInAct extends AppCompatActivity implements View.OnClickListener
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_in);
 
-        signin= findViewById(R.id.btnSignIn);
-        signin.setOnClickListener(this);
+        Signin= findViewById(R.id.btnsignin);
+        Signin.setOnClickListener(this);
 
         userViewModel = new UserViewModel(getApplication());
         userViewModel.getAllUsers().observe(SignInAct.this, new Observer<List<User>>() {
@@ -56,7 +56,7 @@ public class SignInAct extends AppCompatActivity implements View.OnClickListener
     public void onClick(View view) {
         switch (view.getId()){
             case R.id.btnsignin:
-                this.SignIn();
+                this.Signin();
                 openMenuActivity();
         }
 
@@ -65,7 +65,7 @@ public class SignInAct extends AppCompatActivity implements View.OnClickListener
 
     }
 
-    void SignIn(){
+    void Signin(){
         usrname = username.getText().toString();
         paswd = password.getText().toString();
 

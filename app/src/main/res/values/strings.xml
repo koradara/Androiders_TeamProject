@@ -30,7 +30,7 @@
     <string name="btnSignIn">Sign In</string>
     <string name="txtTitle">Welcome to Park And Go !</string>
     <string name="edtusername" />
-    <string name="edtpassword" />
+
     <string name="btnsignin">Sign In</string>
     <string name="txtTitle1">Profile Information</string>
     <string name="txtTitle2">Payment Information</string>
@@ -40,5 +40,6 @@
     <string name="edtDate" />
     <string name="edtCVV" />
     <string name="edtCardNumber" />
+    <string name="edtpassword" />
 
 </resources>
